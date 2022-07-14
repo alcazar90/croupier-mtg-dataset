@@ -52,7 +52,7 @@ if __name__ == '__main__':
     driver.get(url)
     logger.info("URL successfully open...")
 
-    MAX_ID=13
+    MAX_ID=50
 
     logger.info("How many pages are from that type of card?")
     xpath_pages = "/html/body/form/div[5]/div/div[1]/div[2]/div/div[7]/div"
@@ -82,6 +82,9 @@ if __name__ == '__main__':
 
             # Get href from the element extracted
             card_url = ''.join([elem.get_attribute('href') for elem in card_info]).replace(',', '')
+            if card_url == '':
+                logger.info(f"There are no more cards in the page {p+1}...")
+                break
             logger.info(f'Url correctly extracted: {card_url}')
             logger.info(card_url)
 
