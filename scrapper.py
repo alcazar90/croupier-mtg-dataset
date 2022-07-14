@@ -7,6 +7,8 @@ import re
 import coloredlogs
 import logging
 import csv
+
+import selenium.common.exceptions
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
@@ -50,12 +52,17 @@ if __name__ == '__main__':
     driver.get(url)
     logger.info("URL successfully open...")
 
-    MAX_ID=100
+    MAX_ID=13
 
     logger.info("How many pages are from that type of card?")
     xpath_pages = "/html/body/form/div[5]/div/div[1]/div[2]/div/div[7]/div"
-    num_pages = driver.find_element(By.XPATH, xpath_pages)
-    num_pages = re.sub('>|<', '',re.findall(r'>\d+<', num_pages.get_attribute('innerHTML'))[-1])
+
+    try:
+        num_pages = driver.find_element(By.XPATH, xpath_pages)
+        num_pages = re.sub('>|<', '',re.findall(r'>\d+<', num_pages.get_attribute('innerHTML'))[-1])
+    except selenium.common.exceptions.NoSuchElementException:
+        num_pages = '1'
+
     logger.info(f"There are {num_pages} pages from this type of card to download...")
     num_pages = int(num_pages)
 
@@ -76,6 +83,7 @@ if __name__ == '__main__':
             # Get href from the element extracted
             card_url = ''.join([elem.get_attribute('href') for elem in card_info]).replace(',', '')
             logger.info(f'Url correctly extracted: {card_url}')
+            logger.info(card_url)
 
             # Get card id from href
             card_id = re.findall(r'\d+', card_url)[0]
@@ -103,4 +111,5 @@ if __name__ == '__main__':
         # Wait 1 seconds before go to the next page
         logger.info("Wait one second before go to the next page...")
         time.sleep(1)
+    logger.info("All info was scrapped successfully!")
     driver.close()
