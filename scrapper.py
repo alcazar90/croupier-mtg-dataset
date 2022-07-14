@@ -10,7 +10,6 @@ import csv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.common.keys import Keys
 
 # Create logger
 logger = logging.getLogger(__name__)
@@ -45,47 +44,63 @@ if __name__ == '__main__':
     driver = webdriver.Firefox(options=options)
 
     # URL to go to. Include f-string sys.argv argument creature
-    url = f'https://gatherer.wizards.com/Pages/Search/Default.aspx?action=advanced&type=+["Creature"]&subtype=+["{creature_type}"]'
+    url = f'https://gatherer.wizards.com/Pages/Search/Default.aspx?page=0&action=advanced&type=+["Creature"]&subtype=+["{creature_type}"]'
 
     # Opens the URL in the browser
     driver.get(url)
     logger.info("URL successfully open...")
 
-    logger.info("Extract elements with class='cardTitle'")
     MAX_ID=100
 
+    logger.info("How many pages are from that type of card?")
+    xpath_pages = "/html/body/form/div[5]/div/div[1]/div[2]/div/div[7]/div"
+    num_pages = driver.find_element(By.XPATH, xpath_pages)
+    num_pages = re.sub('>|<', '',re.findall(r'>\d+<', num_pages.get_attribute('innerHTML'))[-1])
+    logger.info(f"There are {num_pages} pages from this type of card to download...")
+    num_pages = int(num_pages)
+
     visit_card_ids = set()
+    for p in range(num_pages):
+        # We are currently on page 0, just get the page if p!=0
+        if p != 0:
+            logger.info(f"Change to the page {p+1}")
+            url = f'https://gatherer.wizards.com/Pages/Search/Default.aspx?page={p}&action=advanced&type=+["Creature"]&subtype=+["{creature_type}"]'
+            driver.get(url)
+            logger.info(f"URL from page {p+1} successfully open...")
+        for i in range(0, MAX_ID):
+            logger.info(f"Extract element #{i} with class='cardTitle' from the current page")
+            element_id = get_id_string(i)
+            xpath_string = f'//*[@id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl{element_id}_cardTitle"]'
+            card_info = driver.find_elements(By.XPATH, xpath_string)
 
-    for i in range(0, MAX_ID):
-        logger.info(f'Extract element #{i} from the current page')
-        element_id = get_id_string(i)
-        xpath_string = f'//*[@id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl{element_id}_cardTitle"]'
-        card_info = driver.find_elements(By.XPATH, xpath_string)
+            # Get href from the element extracted
+            card_url = ''.join([elem.get_attribute('href') for elem in card_info]).replace(',', '')
+            logger.info(f'Url correctly extracted: {card_url}')
 
-        # Get href from the element extracted
-        card_url = ''.join([elem.get_attribute('href') for elem in card_info]).replace(',', '')
-        logger.info(f'Url correctly extracted: {card_url}')
+            # Get card id from href
+            card_id = re.findall(r'\d+', card_url)[0]
 
-        # Get card id from href
-        card_id = re.findall(r'\d+', card_url)[0]
+            # Check if the card_id was not explored
+            logger.info(f"Check if card-id {card_id} was not explored...")
+            if card_id in visit_card_ids:
+                logger.info(f"The card-id {card_id} was already explored...skip this card!!")
+                next
+            else:
+                logger.info(f"The card-id {card_id} was not explored, proceed to store info in the csv file...")
+                visit_card_ids.add(card_id)
 
-        # Check if the card_id was not explored
-        logger.info(f'Check if card-id {card_id} was not explored...')
-        if card_id in visit_card_ids:
-            logger.info(f'The card-id {card_id} was already explored...stop the batch')
-            break
-        else:
-            logger.info(f'The card-id {card_id} was not explored, proceed to store info in the csv file...')
-            visit_card_ids.add(card_id)
+            logger.info('Add the information on card_database.csv')
 
-        logger.info('Add the information on card_database.csv')
+            with open('card_database.csv', 'a') as csvFile:
+                writer = csv.writer(csvFile)
+                writer.writerow([card_id, "Creature", creature_type, card_url])
+            csvFile.close()
+            logger.info("Information correctly added...")
 
-        with open('card_database.csv', 'a') as csvFile:
-            writer = csv.writer(csvFile)
-            writer.writerow([card_id, 'Creature', creature_type, card_url])
-        csvFile.close()
-        logger.info('Information correctly added...')
+        # Close the browser
+        logger.info(f"Page {p+1} successfully scrapped")
 
-    # time.sleep(2) cuando se itere por página (?)
-    # Close the browser
+        # Wait 1 seconds before go to the next page
+        logger.info("Wait one second before go to the next page...")
+        time.sleep(1)
     driver.close()
