@@ -13,6 +13,9 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 
+# Card directory path
+CARD_DIRECTORY_PATH = './data/card_database.csv'
+
 # Create logger
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -35,7 +38,7 @@ def get_id_string(id):
     return id_str
 
 # Open connection to the card_database.csv file...
-with open('card_database.csv', 'w') as csvFile:
+with open('CARD_DIRECTORY_PATH', 'w') as csvFile:
     writer = csv.writer(csvFile)
     writer.writerow(col)
 
@@ -52,7 +55,7 @@ if __name__ == '__main__':
     driver.get(url)
     logger.info("URL successfully open...")
 
-    MAX_ID=50
+    MAX_ID=100
 
     logger.info("How many pages are from that type of card?")
     xpath_pages = "/html/body/form/div[5]/div/div[1]/div[2]/div/div[7]/div"
@@ -102,7 +105,7 @@ if __name__ == '__main__':
 
             logger.info('Add the information on card_database.csv')
 
-            with open('card_database.csv', 'a') as csvFile:
+            with open(CARD_DIRECTORY_PATH, 'a') as csvFile:
                 writer = csv.writer(csvFile)
                 writer.writerow([card_id, "Creature", creature_type, card_url])
             csvFile.close()
