@@ -13,14 +13,6 @@ Croupier is a python project for building creatures' dataset from the [Gatherer]
 website, the official Magic Card Database. You could download the images and information from the type of creatures you 
 want. The project's reason is to make available fun datasets for building toy machine learning projects.
 
-## Table of Content
-* [What project includes?](#img-srcassetswthsvg--what-project-includes)
-* [How to use it?](#img-srcassetsudssvg-how-to-use-it)
-* [Image processing](#img-srcassetsusgsvg-image-processing)
-* [License](#img-srcassetsjudsvg-license)
-
---- 
-
 ## <img src="./assets/wth.svg">  What project includes?
 
 * `card_metadata.py`: Retrieve a card type and populate the file `card_database.csv` with the following information:
@@ -58,7 +50,7 @@ If we want to add another creature type, we use the command line again, and the 
 the file. **The important is that you have the metadata from the cards you want to retrieve the information before 
 moving to the next step.** By the way, you should see something like the below gif when the during the program execution.
 
-<a href="https://asciinema.org/a/61IEummfN9kUU5bT7wibGgd2w?speed=1.5" target="_blank"><img src="https://asciinema.org/a/61IEummfN9kUU5bT7wibGgd2w.svg" /></a>
+<script id="asciicast-61IEummfN9kUU5bT7wibGgd2w" src="https://asciinema.org/a/61IEummfN9kUU5bT7wibGgd2w.js" async data-autoplay="1" data-speed="1.5"></script>
 
 Let's move to the second step; if you want to get all cards' features and images from elf creatures, `card_retriever.py`
 requires only the `creature_type` argument, via the command line looks as follows:
@@ -76,7 +68,7 @@ python card_retriever.py -n 1 Elf
 python card_retriever.py --number 1 Elf
 ```
 
-<a href="https://asciinema.org/a/ilRkCidxlrj0s8cC2oaRvkB9a?speed=1.5" target="_blank"><img src="https://asciinema.org/a/ilRkCidxlrj0s8cC2oaRvkB9a.svg" /></a>
+<script id="asciicast-ilRkCidxlrj0s8cC2oaRvkB9a" src="https://asciinema.org/a/ilRkCidxlrj0s8cC2oaRvkB9a.js" async data-autoplay="1" data-speed="1.5"></script>
 
 You should verify the new lines on the file `sample_data/card_information.csv` and the card images on the folder 
 `sample_data/img/elf/`. **Note:** You can change the directory path in the `gatherer_croupier/config.py` file.
@@ -89,7 +81,8 @@ card id in the card's URL.
 ```bash
 python card_retriver.py Elf --card_id 527518
 ```
-<a href="https://asciinema.org/a/pjXNUxVJDdxjBiNjNIjkB1T9E?speed=1.5" target="_blank"><img src="https://asciinema.org/a/pjXNUxVJDdxjBiNjNIjkB1T9E.svg" /></a>
+
+<script id="asciicast-pjXNUxVJDdxjBiNjNIjkB1T9E" src="https://asciinema.org/a/pjXNUxVJDdxjBiNjNIjkB1T9E.js" async data-autoplay="1" data-speed="1.5"></script>
 
 or get the [Fiendslayer Paladin](https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=430547) card using
 the non-verbose option `-i` instead `--card_id`:
