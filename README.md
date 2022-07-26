@@ -50,7 +50,7 @@ If we want to add another creature type, we use the command line again, and the 
 the file. **The important is that you have the metadata from the cards you want to retrieve the information before 
 moving to the next step.** By the way, you should see something like the below gif when the during the program execution.
 
-<script id="asciicast-61IEummfN9kUU5bT7wibGgd2w" src="https://asciinema.org/a/61IEummfN9kUU5bT7wibGgd2w.js" async data-autoplay="1" data-speed="1.5"></script>
+<img src="./assets/card_metadata.gif">
 
 Let's move to the second step; if you want to get all cards' features and images from elf creatures, `card_retriever.py`
 requires only the `creature_type` argument, via the command line looks as follows:
@@ -68,7 +68,7 @@ python card_retriever.py -n 1 Elf
 python card_retriever.py --number 1 Elf
 ```
 
-<script id="asciicast-ilRkCidxlrj0s8cC2oaRvkB9a" src="https://asciinema.org/a/ilRkCidxlrj0s8cC2oaRvkB9a.js" async data-autoplay="1" data-speed="1.5"></script>
+<img src="./assets/card_retriever1.gif">
 
 You should verify the new lines on the file `sample_data/card_information.csv` and the card images on the folder 
 `sample_data/img/elf/`. **Note:** You can change the directory path in the `gatherer_croupier/config.py` file.
@@ -82,7 +82,7 @@ card id in the card's URL.
 python card_retriver.py Elf --card_id 527518
 ```
 
-<script id="asciicast-pjXNUxVJDdxjBiNjNIjkB1T9E" src="https://asciinema.org/a/pjXNUxVJDdxjBiNjNIjkB1T9E.js" async data-autoplay="1" data-speed="1.5"></script>
+<img src="./assets/card_retriever2.gif">
 
 or get the [Fiendslayer Paladin](https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=430547) card using
 the non-verbose option `-i` instead `--card_id`:
