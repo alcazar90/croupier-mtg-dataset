@@ -6,7 +6,9 @@
 <img src="assets/527518_elf.png" width="223" height="311">
 <img src="assets/452859_goblin.png" width="223" height="311"> 
 </p>
+
 ---
+
 
 Croupier is a python project for building creatures' dataset from the [Gatherer](https://gatherer.wizards.com/Pages/Default.aspx)
 website, the official Magic Card Database. You could download the images and information from the type of creatures you 
