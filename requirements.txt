@@ -1,5 +1,6 @@
 selenium==4.3.0
-colorama==0.4.4
+colorama==0.4.5
 coloredlogs==15.0.1
 pandas
-webdriver-manager==3.5.2
+webdriver-manager==3.8.2
+opencv-python==4.6.0.66
