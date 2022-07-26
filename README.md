@@ -2,11 +2,10 @@
 
 ---
 <p align="center">
-<img src="assets/430547_knight.jpeg" width="223" height="311">
+<img src="assets/430547_knight.jpeg" width="223" height=""288">
 <img src="assets/527518_elf.png" width="223" height="311">
-<img src="assets/452859_goblin.png" width="223" height="311">
+<img src="assets/452859_goblin.png" width="223" height="311"> 
 </p>
-
 ---
 
 Croupier is a python project for building creatures' dataset from the [Gatherer](https://gatherer.wizards.com/Pages/Default.aspx)
@@ -50,7 +49,7 @@ If we want to add another creature type, we use the command line again, and the 
 the file. **The important is that you have the metadata from the cards you want to retrieve the information before 
 moving to the next step.** By the way, you should see something like the below gif when the during the program execution.
 
-<img src="./assets/card_metadata.gif">
+[![asciicast](https://asciinema.org/a/61IEummfN9kUU5bT7wibGgd2w.svg)](https://asciinema.org/a/61IEummfN9kUU5bT7wibGgd2w?autoplay=1&speed=1.5)
 
 Let's move to the second step; if you want to get all cards' features and images from elf creatures, `card_retriever.py`
 requires only the `creature_type` argument, via the command line looks as follows:
@@ -68,7 +67,7 @@ python card_retriever.py -n 1 Elf
 python card_retriever.py --number 1 Elf
 ```
 
-<img src="./assets/card_retriever1.gif">
+[![asciicast](https://asciinema.org/a/ilRkCidxlrj0s8cC2oaRvkB9a.svg)](https://asciinema.org/a/ilRkCidxlrj0s8cC2oaRvkB9a?autoplay=1&speed=1.5)
 
 You should verify the new lines on the file `sample_data/card_information.csv` and the card images on the folder 
 `sample_data/img/elf/`. **Note:** You can change the directory path in the `gatherer_croupier/config.py` file.
@@ -82,7 +81,7 @@ card id in the card's URL.
 python card_retriver.py Elf --card_id 527518
 ```
 
-<img src="./assets/card_retriever2.gif">
+[![asciicast](https://asciinema.org/a/pjXNUxVJDdxjBiNjNIjkB1T9E.svg)](https://asciinema.org/a/pjXNUxVJDdxjBiNjNIjkB1T9E?autoplay=1&speed=1.5)
 
 or get the [Fiendslayer Paladin](https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=430547) card using
 the non-verbose option `-i` instead `--card_id`:
