@@ -47,7 +47,7 @@ python card_metadata.py Elf
 
 If we want to add another creature type, we use the command line again, and the program will append the new metadata in
 the file. **The important is that you have the metadata from the cards you want to retrieve the information before 
-moving to the next step.** By the way, you should see something like the below gif when the during the program execution.
+moving to the next step.** By the way, you should see something like the below video during the program execution.
 
 <a href="https://asciinema.org/a/61IEummfN9kUU5bT7wibGgd2w?autoplay=1&speed=1.5" target="_blank"><img src="https://asciinema.org/a/61IEummfN9kUU5bT7wibGgd2w.svg" /></a>
 
