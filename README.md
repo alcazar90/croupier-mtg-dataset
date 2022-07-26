@@ -2,7 +2,7 @@
 
 ---
 
-<p style="text-align:center">
+<p align="center">
 <img src="assets/430547_knight.jpeg" width="223" height="311" alt="Magic the Gathering card: Fiendslayer Paladin">
 <img src="assets/527518_elf.png" width="223" height="311" alt="Magic the Gathering card: Shessra, Death's Whisper">
 <img src="assets/452859_goblin.png" width="223" height="311" alt="Magic the Gathering card: Legion Warboss"> 
