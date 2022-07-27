@@ -104,6 +104,10 @@ Notice that you always need to provide the creature type as an argument in the c
 **TODO:** Using OpenCV for cropping and standardising the card images. There are various image sizes
 and two image extension: `PNG` and `JPEG`.
 
+<p align="center">
+<img src="assets/img-cropping.png" alt="alala">
+</p>
+
 ---
 
 ## <img src="./assets/lea.svg"> Card features
