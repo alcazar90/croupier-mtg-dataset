@@ -136,6 +136,8 @@ the identical card name structure: `[CARD_ID]_[CREATURE_TYPE].[IMG_EXTENSION]`. 
 <img src="sample_data/img_crop/473041_knight.png">
 <img src="sample_data/img_crop/466879_knight.png">
 <img src="sample_data/img_crop/540916_zombie.png">
+<br>
+<i>Artists (from left-to-right): Marie Magny, Lius Lasahido, Paul Scott Canavan, Victor Adame Minguez, Wesley Burt, and Olivier Bernard</i>
 </p>
 
 ---
