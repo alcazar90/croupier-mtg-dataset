@@ -1,2 +1,4 @@
 data/
 *.log
+**.pyc
+gatherer_croupier/__pycache__/*
