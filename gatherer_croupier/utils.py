@@ -86,3 +86,11 @@ def get_img_information(con, xpath):
         return img_src, 'png'
     else:
         return img_src, 'jpeg'
+
+
+def crop_image(image, props=(0.06, 0.94, 0.1, 0.57)):
+    """Crop the image given the proportions in the X's and Y's dimensions"""
+    WL, WR, HT, HB = props
+    Y, X, _ = image.shape
+    return image[int(Y * HT):int(Y * HB), int(X * WL):int(X * WR), :]
+
