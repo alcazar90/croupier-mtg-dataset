@@ -130,7 +130,10 @@ the identical card name structure: `[CARD_ID]_[CREATURE_TYPE].[IMG_EXTENSION]`. 
 
 
 <p align="center">
-<img src="assets/img-cropping.png" alt="alala">
+<img src="sample_data/img_crop/527518_elf.png">
+<img src="sample_data/img_crop/461090_zombie.png">
+<img src="sample_data/img_crop/472994_knight.png">
+<img src="sample_data/img_crop/473041_knight.png">
 </p>
 
 ---
