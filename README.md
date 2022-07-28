@@ -36,6 +36,8 @@ want. The project's reason is to make available fun datasets for building toy ma
 
 ## <img src="./assets/uds.svg"> How to use it?
 
+Before start: Make sure you have [installed the geckodrivers for selenium](https://stackoverflow.com/questions/40208051/selenium-using-python-geckodriver-executable-needs-to-be-in-path).
+
 You can curate your specific database **via command line interface**. In a nutshell, it
 is a two-step process:
 1. Use `card_metadata.py` to create your `card_database.csv` populating the file with all card creatures' meta-information (`card_id`, `URL`) that belonged to the same kind.
@@ -101,8 +103,31 @@ Notice that you always need to provide the creature type as an argument in the c
 
 ## <img src="./assets/usg.svg"> Image processing
 
-**TODO:** Using OpenCV for cropping and standardising the card images. There are various image sizes
-and two image extension: `PNG` and `JPEG`.
+The card's image sizes are not standard, and the dimensions vary by edition. The old expansions have designs that tend 
+to be smaller than the new ones. The cropping script is a simple routine that crops the card image based on proportions,
+which changes if the design changes. Based on a sample that contains the complete collection of Elf, Knights, Zombies,
+and Goblins creatures, the distribution of dimensions exhibited by the cards is in the following table.
+
+| Dimension | Number of Cards | Card id Example                                                                      |
+|-----------|-----------------|--------------------------------------------------------------------------------------|
+| 223x310   | 713             | [202435](https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=202435)   |
+| 265x370   | 702             | [509387](https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=509387)   |
+| 223x311   | 353             | [439626](https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=439626)   |
+| 266x370   | 13              | [534669](https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=534669)   |
+| 222x310   | 11              | [205423](https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=205423)   |
+| 226x311   | 3               | [221568](https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=221568)   |
+
+In the `card_image_processing.py` the proportions are encoded in the `PROP_SIZE` dictionary. 
+
+```python
+python card_image_processing
+```
+
+The card image processing iterate through the `/sample_data/img` folder and extract the image from
+the card storing all card images regardless of its creature type in the `/sample_data/img_crop` folder saving with
+the identical card name structure: `[CARD_ID]_[CREATURE_TYPE].[IMG_EXTENSION]`. There are two image tension: `PNG` and
+`JPEG`.
+
 
 <p align="center">
 <img src="assets/img-cropping.png" alt="alala">
