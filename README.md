@@ -27,10 +27,14 @@ want. The project's reason is to make available fun datasets for building toy ma
   * A csv storing the card information such as description, abilities, mana cost, etc.
   * An image of the card
 <br></br>
+* `card_image_processing.py:` Take the directory with creatures folders that contains card images and crop to capture the monster image of each card.
+  * The cropped images are store in `./sample_data/crop_img/`
+<br></br>
 * `./sample_data`: A folder that includes a mini-dataset curated to exemplify the format of the files.
   * `card_database.csv`: metadata (`card_id`, `URL`) from various card's creatures types
   * `card_information.csv`: features with the text that have each card
   * `img/card_subtype`: each folder contain the card images (e.g. `img/goblin/`)
+  * `crop_img/`: A folder that contains all cropped images and file have the following name structure `[card_id]_[creature_type].[img_ext]`
 
 ---
 
@@ -130,14 +134,11 @@ the identical card name structure: `[CARD_ID]_[CREATURE_TYPE].[IMG_EXTENSION]`. 
 
 
 <p align="center">
-<img src="sample_data/img_crop/527518_elf.png">
-<img src="sample_data/img_crop/461090_zombie.png">
-<img src="sample_data/img_crop/472994_knight.png">
-<img src="sample_data/img_crop/473041_knight.png">
-<img src="sample_data/img_crop/466879_knight.png">
-<img src="sample_data/img_crop/540916_zombie.png">
+<img src="assets/croupier-mtg-dataset.png"
 <br>
-<i>Artists (from left-to-right): Marie Magny, Lius Lasahido, Paul Scott Canavan, Victor Adame Minguez, Wesley Burt, and Olivier Bernard</i>
+<i><b>Artists</b> (from left-to-right/top-to-bottom): Randy Vargas, Todd Lockwood, Bran Sola, Miguel Mercado, Kieran Yanner,
+Luca Zontini, April Prime, Wayne Wu, Wayne Reynolds, Wayne Reynolds, Volkan Baga, Daarken, Kieran Yanner, Wayne Reynolds,
+Michael Komarck, Izzy, Jason Felix, Nils Hamm, Josh Hass, and Crhistopher Burdett.</i>
 </p>
 
 ---
